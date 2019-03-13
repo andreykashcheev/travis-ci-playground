@@ -36,6 +36,7 @@ jobs:
       skip_cleanup: true
       name: build_docs_site
       script:
+        - ls -la
         - ./scripts/docker-docs.sh
     - stage: deploy
       name: deploy_to_s3
