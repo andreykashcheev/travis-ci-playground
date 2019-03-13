@@ -8,6 +8,7 @@ services:
 
 stages:
   - name: build_deploy_docs
+  - name: review
 
 
 before_install:
@@ -45,6 +46,18 @@ jobs:
         on:
           branch: master
           repo: andreykashcheev/travis-ci-playground
+    - stage: review
+      before_script:
+        - aws s3 sync s3://ak-poc-clouddocs-ci/configs/travis-ci-playground ./temp_config/
+        - mkdir ./script
+        - cp ./temp_config/docker-docs.sh ./script/docker-docs.sh
+        - cp ./temp_config/test-docs.sh ./script/test-docs.sh
+        - cp ./temp_config/conf.py ./docs/conf.py
+        - chmod -R 755 script
+      script:
+        - make docker-test
+
+
 
 notifications:
   email: false
