@@ -33,7 +33,8 @@ jobs:
         - cp ./temp_config/conf.py ./docs/conf.py
       script:
         - ls -la
-        - ./scripts/docker-docs.sh
+        - ls -la ./scripts
+        - /bin/sh ./scripts/docker-docs.sh
     - stage: deploy
       name: deploy_to_s3
       provider: s3
