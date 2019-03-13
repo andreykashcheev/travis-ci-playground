@@ -7,7 +7,6 @@ services:
   - docker
 
 stages:
-  - name: prepare
   - name: build
   - name: deploy
 
@@ -23,18 +22,15 @@ install:
 
 jobs:
   include:
-    - stage: prepare
-      name: pull_configs
+    - stage: build
       skip_cleanup: true
-      script:
+      name: build_docs_site
+      before_script:
         - aws s3 sync s3://ak-poc-clouddocs-ci/configs/ve-public-cloud ./temp_config/
         - mkdir ./scripts
         - chmod 755 scripts
         - cp ./temp_config/docker-docs.sh ./scripts/docker-docs.sh
         - cp ./temp_config/conf.py ./docs/conf.py
-    - stage: build
-      skip_cleanup: true
-      name: build_docs_site
       script:
         - ls -la
         - ./scripts/docker-docs.sh
