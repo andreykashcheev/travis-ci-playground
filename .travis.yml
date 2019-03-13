@@ -7,8 +7,7 @@ services:
   - docker
 
 stages:
-  - name: build
-  - name: deploy
+  - name: build_deploy_docs
 
 
 before_install:
@@ -35,14 +34,14 @@ jobs:
         - ls -la
         - ls -la ./script
         - make docker-html
-    - stage: deploy
-      name: deploy_to_s3
-      provider: s3
-      access_key_id: $AWS_ACCESS_KEY_ID
-      secret_access_key: $AWS_SECRET_ACCESS_KEY
-      bucket: ak-poc-clouddocs-ci
-      local_dir: docs/_build/html
-      upload_dir: travis-ci-site
-      on:
-        branch: master
-        repo: andreykashcheev/travis-ci-playground
+      deploy:
+        skip_cleanup: true
+        provider: s3
+        access_key_id: $AWS_ACCESS_KEY_ID
+        secret_access_key: $AWS_SECRET_ACCESS_KEY
+        bucket: ak-poc-clouddocs-ci
+        local_dir: docs/_build/html
+        upload_dir: travis-ci-site
+        on:
+          branch: master
+          repo: andreykashcheev/travis-ci-playground
