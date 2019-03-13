@@ -45,8 +45,9 @@ jobs:
         on:
           branch: master
           repo: andreykashcheev/travis-ci-playground
-      notifications:
-        email:
-          recipients:
-            - a.kashcheev@f5.com
-        webhooks: https://outlook.office.com/webhook/ef7d7702-cc7e-496c-9408-0768c9221005@dd3dfd2f-6a3b-40d1-9be0-bf8327d81c50/TravisCI/b1d06904d63547518ac6b6307af9e57d/b13eeba0-6263-4ea3-b582-48a8fd612f47
+
+
+notifications:
+  webhooks: https://outlook.office.com/webhook/ef7d7702-cc7e-496c-9408-0768c9221005@dd3dfd2f-6a3b-40d1-9be0-bf8327d81c50/TravisCI/b1d06904d63547518ac6b6307af9e57d/b13eeba0-6263-4ea3-b582-48a8fd612f47
+    on_success: always
+    on_failure: always
