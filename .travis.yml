@@ -26,7 +26,7 @@ jobs:
       skip_cleanup: true
       name: build_docs_site
       before_script:
-        - aws s3 sync s3://ak-poc-clouddocs-ci/configs/ve-public-cloud ./temp_config/
+        - aws s3 sync s3://ak-poc-clouddocs-ci/configs/travis-ci-playground ./temp_config/
         - mkdir ./script
         - cp ./temp_config/docker-docs.sh ./script/docker-docs.sh
         - cp ./temp_config/conf.py ./docs/conf.py
