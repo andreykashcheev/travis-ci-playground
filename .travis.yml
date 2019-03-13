@@ -28,7 +28,7 @@ jobs:
       before_script:
         - aws s3 sync s3://ak-poc-clouddocs-ci/configs/ve-public-cloud ./temp_config/
         - mkdir ./scripts
-        - chmod 755 scripts
+        - chmod -R 755 scripts
         - cp ./temp_config/docker-docs.sh ./scripts/docker-docs.sh
         - cp ./temp_config/conf.py ./docs/conf.py
       script:
