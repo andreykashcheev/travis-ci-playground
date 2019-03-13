@@ -45,3 +45,9 @@ jobs:
         on:
           branch: master
           repo: andreykashcheev/travis-ci-playground
+      notifications:
+        email:
+          recipients:
+            - a.kashcheev@f5.com
+          on_success: never
+          on_failure: always
