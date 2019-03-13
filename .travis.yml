@@ -27,13 +27,13 @@ jobs:
       name: build_docs_site
       before_script:
         - aws s3 sync s3://ak-poc-clouddocs-ci/configs/ve-public-cloud ./temp_config/
-        - mkdir ./scripts
-        - cp ./temp_config/docker-docs.sh ./scripts/docker-docs.sh
+        - mkdir ./script
+        - cp ./temp_config/docker-docs.sh ./script/docker-docs.sh
         - cp ./temp_config/conf.py ./docs/conf.py
-        - chmod -R 755 scripts
+        - chmod -R 755 script
       script:
         - ls -la
-        - ls -la ./scripts
+        - ls -la ./script
         - make docker-html
     - stage: deploy
       name: deploy_to_s3
