@@ -54,6 +54,8 @@ jobs:
         - cp ./temp_config/test-docs.sh ./script/test-docs.sh
         - cp ./temp_config/conf.py ./docs/conf.py
         - chmod -R 755 script
+        - ls -la
+        - ls -la script/
       script:
         - make docker-test
 
