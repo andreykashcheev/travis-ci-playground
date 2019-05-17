@@ -8,7 +8,9 @@ services:
 
 stages:
   - name: build_deploy_docs
+    if: type = pull_request
   - name: review
+    if: type != pull_request
 
 
 before_install:
@@ -46,6 +48,11 @@ jobs:
         on:
           branch: master
           repo: andreykashcheev/travis-ci-playground
+    - stage: review
+      script:
+        - ls -la
+        - echo "Booo"
+
 
 
 
